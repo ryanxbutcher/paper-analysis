@@ -4,7 +4,7 @@
 window.addEventListener("error",function(e){show("ERR "+(e.message||"")+" @"+(e.filename||"").slice(-20)+":"+e.lineno+":"+e.colno+(e.target&&e.target.tagName?" <"+e.target.tagName+" "+(e.target.src||"")+">":""));},true);
 window.addEventListener("unhandledrejection",function(e){show("REJ "+(e.reason&&(e.reason.stack||e.reason.message)||e.reason));});
 document.addEventListener("click",function(e){show("click "+e.target.tagName+"#"+e.target.id+"."+String(e.target.className).slice(0,30));},true);
-document.addEventListener("DOMContentLoaded",function(){show("ready "+navigator.userAgent.slice(-60));});})();</script>
+document.addEventListener("DOMContentLoaded",function(){show("ready "+navigator.userAgent.slice(-60));});})();</script><script>window.addEventListener("load",function(){setTimeout(function(){try{var q=location.search;if(q.indexOf("final")>0){window.__pb.state(9);}else if(q.indexOf("mid")>0){window.__pb.state(5);}else{window.__pb.start();}}catch(e){var d=document.createElement("div");d.style.cssText="position:fixed;top:0;left:0;z-index:99999;background:#600;color:#fff;font:12px monospace";d.textContent="AUTO "+e.message;document.body.appendChild(d);}},2500);});</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>The Therapeutic Home Environment: An Interactive Reading</title>
