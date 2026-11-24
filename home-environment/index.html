@@ -2549,6 +2549,16 @@ const DATA = {"summary":{"refs":449,"first":1981,"last":2026,"median":2022,"sinc
      sfx("creak"); if (st.done.noscreens && !film.talking) { faceNow = ["skeptic", "surprised", "curious"][Math.floor(Math.random() * 3)]; drawWorld(snap()); clearTimeout(faceWas); faceWas = setTimeout(function(){ if (!film.talking) { faceNow = null; drawWorld(snap()); } }, 1100); } }]
   ].forEach(function(h){ var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", h[0]); b.tabIndex = -1; b.style.cssText = "left:" + h[1] + "%;top:" + h[2] + "%;width:" + h[3] + "%;height:" + h[4] + "%"; b.addEventListener("click", function(){ if (!calm && $("poster").hidden) h[5](); }); $("hots").appendChild(b); });
 
+  /* a picture that fails to load is asked for again, twice, a moment apart (a phone on a weak
+     signal, or the host mid-change, left a broken-image box on the floor, 2026-11-24) */
+  document.addEventListener("error", function(e){
+    var im = e.target; if (!im || im.tagName !== "IMG") return;
+    var src = im.getAttribute("src") || ""; if (!src || src.indexOf("data:") === 0) return;
+    var n = +(im.dataset.retry || 0); if (n >= 2) { im.style.visibility = "hidden"; return; }
+    im.dataset.retry = n + 1;
+    setTimeout(function(){ im.src = src.split("?")[0] + "?r=" + (n + 1); }, 1200 * (n + 1));
+  }, true);
+
   /* ---- things that just happen: background critters, on a loose timer ---- */
   var FACE = {sheep: 1, mouse: 1, plane: 1, birds: 1, rocket: 1, car: -1, blimp: -1, car2: -1, moto: -1};   /* which way each is drawn facing */
   function backward(file, from, to){ var d = to[0] - from[0]; return FACE[file] && d && (d > 0 ? 1 : -1) !== FACE[file]; }
@@ -2603,7 +2613,11 @@ const DATA = {"summary":{"refs":449,"first":1981,"last":2026,"median":2022,"sinc
   function catFree(){ var c = stageEls.cat; return !!c && film.running && !film.paused && !c._busy && !c._high && !calm && !asleep(); }
   var AMBS = [
     {id: "sheep", ok: function(){ return !asleep(); }, run: function(){
-      [["Count yourself.", "sheep1"], ["We are on strike.", "sheep2"], ["", ""]].forEach(function(wd, k){ setTimeout(function(){ critter("sheep", 9, [104, 60 + k], [-12, 60 + k], 13000, "hop", wd[0]); if (wd[1]) cvoice(wd[1]); }, k * 2100); }); sfx("baa"); return 17500; }},
+      /* five different sheep on the picket line, left to right, each sign lettered into its own picture
+         (Ryan, 2026-11-24: the signs looked odd, and he wanted a mixed, more expressive crowd) */
+      [["ram", 14, 44, "sheep1"], ["lamb", 9.5, 50, ""], ["punk", 12.2, 44, "sheep2"], ["gran", 11.5, 44, ""], ["big", 11.5, 44, ""]].forEach(function(sh, k){
+        setTimeout(function(){ critter("sheep_" + sh[0], sh[1], [-16, sh[2]], [104, sh[2]], 15000, "hop", ""); if (sh[3]) cvoice(sh[3]); if (k === 3) sfx("baa"); }, k * 2500); });
+      sfx("baa"); return 27500; }},
     {id: "mouse", ok: function(){ return true; }, run: function(){
       var m = critter("mouse", 6, [104, 67], [44, 67], 2600, "scurry", "Don't mind me.", true); sfx("squeak"); setTimeout(function(){ cvoice("mouse"); }, 2700);
       setTimeout(function(){ m.style.transitionDuration = "2600ms"; m.style.left = "-10%"; }, 5600); setTimeout(function(){ m.remove(); }, 8400); return 8600; }},
