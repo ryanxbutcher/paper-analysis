@@ -43,7 +43,7 @@ p{margin:0}
 .eyebrow{color:var(--cyan)}
 .eyebrow::before{content:"// "}
 
-/* status line: says plainly this is not for sale */
+/* status flag */
 .status{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.5rem .9rem;color:var(--cream);border:1px solid var(--line);background:#0B1222cc;padding:.55rem .8rem}
 .status i{width:.55rem;height:.55rem;border-radius:50%;background:var(--green);box-shadow:0 0 .6rem var(--green);animation:pulse 2.4s ease-in-out infinite}
 .status b{color:var(--amber);font-weight:600}
@@ -109,7 +109,7 @@ p{margin:0}
 .b-more .wrap{padding-block:3rem;text-align:center}
 .b-more p{max-width:38rem;margin:0 auto}
 
-/* ---------- shared: the not-for-sale panel and the shop footer ---------- */
+/* ---------- shared: the shop footer ---------- */
 .contact .wrap{padding-block:3rem}
 .panel{border:1px solid var(--amber);background:#0B1222e6;padding:1.6rem;display:grid;grid-template-columns:minmax(0,16rem) minmax(0,1fr);gap:1rem 2.5rem;box-shadow:0 0 2rem #F4A64A1f}
 .panel h2{font-size:1.7rem;font-weight:700}
@@ -152,7 +152,7 @@ p{margin:0}
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <p class="status mono"><i></i>The Butcher Shop <b>Not for sale</b> In development</p>
+  <p class="status mono"><i></i>Service in development</p>
   <p class="sign">Science Experiments</p>
 </div></header>
 
@@ -201,13 +201,6 @@ p{margin:0}
     <p class="note">This is the first one we have made. The process behind it is written down and repeatable: a fact sheet from the source first, a design second, the build and its checks last.</p>
   </div></section>
 
-  <section class="contact"><div class="wrap"><div class="panel">
-    <div><p class="tag mono">Status</p><h2>This is not for sale.</h2></div>
-    <div>
-      <p>Science Experiments is something The Butcher Shop is still developing, and we expect to keep it free. Right now we make these to learn, to teach and to get better at it.</p>
-      <p>If you have a paper or a document that would be interesting to present this way, reach out and we can talk about what that could look like: <a class="addr" href="mailto:support@thebutchershop.ai">support@thebutchershop.ai</a></p>
-    </div>
-  </div></div></section>
 </main>
 
 <footer class="shopfoot"><div class="wrap">
